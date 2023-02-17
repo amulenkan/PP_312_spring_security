@@ -8,6 +8,7 @@ import ru.kata.spring.boot_security.demo.services.UserServiceImpl;
 
 import java.util.Optional;
 
+
 @Component
 public class UserValidator implements Validator {
     private final UserServiceImpl userService;
