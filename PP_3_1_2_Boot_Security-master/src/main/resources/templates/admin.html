@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2>All users</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+        <th scope="col">Username</th>
+        <th scope="col">Password</th>
+        <th scope="col">Access rights</th>
+        <th scope="col">Operations</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr >
+    <tr th:each="user: ${users}">
+        <td th:text="${user.name}"/>
+        <td th:text="${user.surname}"/>
+        <td th:text="${user.age}"/>
+        <td th:text="${user.email}"/>
+        <td th:text="${user.username}"/>
+        <td th:text="${user.password}"/>
+        <td th:text="${user.roles}"/>
+        <td>
+            <form th:method="PATCH" th:action="@{/admin/{id}(id=${user.getId()})}"> <input type="submit" value="Update">
+                </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/admin/{id}/delete(id=${user.getId()})}"> <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+
+    </tr>
+    </tbody>
+</table>
+<br/>
+
+<form th:method="GET" th:action="@{/admin/addNewUser}" >
+    <input type="submit" value="Add">
+</form>
+<br>
+<br>
+<a href="/logout"><input type="button" value="Logout"></a>
+</body>
+</html>
