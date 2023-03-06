@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findUserByUsername(username);
         if (user == null) {
@@ -64,6 +65,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 user.getAuthorities());
     }
 
+    @Transactional
     public Optional<User> loadByUsernameToOptional(String username) {
         User user = null;
         user = findUserByUsername(username);
